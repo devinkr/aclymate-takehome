@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import TopBar from './components/TopBar';
+import AlbumList from './components/AlbumList';
+import albumsData from './top100.json';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const albums = albumsData.feed.entry.map((album) => ({
+		id: album.id.label,
+		name: album['im:name'].label,
+		artist: album['im:artist'].label,
+		img: album['im:image'][2].label,
+	}));
+	return (
+		<>
+			<TopBar albums={albums} />
+			<AlbumList albums={albums} />
+		</>
+	);
 }
 
 export default App;
