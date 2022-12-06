@@ -3,15 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
-const hoverBox = {
-	padding: '10px',
-	borderRadius: '10px',
-	'&:hover': {
-		backgroundColor: 'rgba(200, 200, 200, .5)',
-		transition: '.5s',
-	},
-};
-
 function AlbumCard({ album }) {
 	if (album) {
 		return (
