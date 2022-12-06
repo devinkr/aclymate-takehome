@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
 function SearchBar({ searchInput, setSearchInput }) {
-
 	return (
 		<>
 			<Typography
@@ -19,7 +18,7 @@ function SearchBar({ searchInput, setSearchInput }) {
 					onChange={(event) => setSearchInput(event.target.value)}
 					label='Search by artist or album'
 					id='search-bar'
-					sx={{ mb: 10, width: '100ch' }}
+					sx={{ mb: 3, width: '100ch' }}
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position='start'>
