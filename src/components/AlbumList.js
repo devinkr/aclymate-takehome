@@ -1,23 +1,39 @@
-import React from 'react';
-import Container from '@mui/material/Container';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import AlbumCard from './AlbumCard';
 import Grid from '@mui/system/Unstable_Grid';
-import Typography from '@mui/material/Typography';
+import SearchBar from './SearchBar';
+import albumsData from '../top100.json';
 
-function AlbumList({ albums }) {
-	if (albums.length > 0) {
+function AlbumList(props) {
+	const [searchInput, setSearchInput] = useState('');
+	const albums = albumsData.feed.entry.map((album) => ({
+		id: album.id.attributes['im:id'],
+		name: album['im:name'].label,
+		artist: album['im:artist'].label,
+		img: album['im:image'][2].label,
+		price: album['im:price'],
+		releaseDate: new Date(album['im:releaseDate'].attributes.label),
+		url: album.link.attributes.href,
+	}));
+	const searchQuery = searchInput.toLocaleLowerCase();
+	const filteredAlbums = albums.filter((albums) => {
 		return (
-			<Container maxWidth='xl'>
-				<Typography
-					variant='h2'
-					component='h1'
-					sx={{ m: 8, textAlign: 'center' }}>
-					iTunes Top100 Albums
-				</Typography>
+			albums.name.toLowerCase().includes(searchQuery) ||
+			albums.artist.toLowerCase().includes(searchQuery)
+		);
+	});
+
+	if (filteredAlbums.length > 0) {
+		return (
+			<>
+				<SearchBar
+					searchInput={searchInput}
+					setSearchInput={setSearchInput}
+				/>
 				<Box sx={{ width: '100%' }}>
 					<Grid container rowSpacing={8} columnSpacing={8}>
-						{albums.map((album, index) => (
+						{filteredAlbums.map((album, index) => (
 							<Grid
 								xs={12}
 								md={6}
@@ -28,7 +44,7 @@ function AlbumList({ albums }) {
 						))}
 					</Grid>
 				</Box>
-			</Container>
+			</>
 		);
 	}
 }

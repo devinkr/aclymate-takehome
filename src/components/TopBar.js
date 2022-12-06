@@ -2,14 +2,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
-function TopBar({ albums }) {
-	const searchLabels = albums.map((album) => ({
-		label: album.name,
-		id: album.id,
-	}));
+function TopBar(props) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
@@ -36,22 +30,6 @@ function TopBar({ albums }) {
 						}}
 						alt='RWT Logo'
 						src='https://aclymate.com/images/aclymate-icon.png'
-					/>
-					<Autocomplete
-						id='move-search'
-						size='small'
-						options={searchLabels}
-						sx={{
-							width: 300,
-							bgcolor: '#888888',
-							margin: 1,
-						}}
-						renderInput={(params) => (
-							<TextField
-								{...params}
-								placeholder='Search Albums'
-							/>
-						)}
 					/>
 				</Toolbar>
 			</AppBar>

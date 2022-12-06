@@ -18,10 +18,10 @@ function AlbumCard({ album }) {
 			<Box component='div' display='flex'>
 				<Box
 					component='img'
-					sx={{ mr: 3, maxWidth: 140 }}
+					sx={{ mr: 3 }}
 					src={album.img}
 					alt={album.name}></Box>
-				<Box sx={{ height: '100%' }}>
+				<Box>
 					<Typography variant='h6' component='h2'>
 						{album.name}
 					</Typography>
