@@ -3,13 +3,24 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const themeLight = createTheme({
+	palette: {
+		background: {
+			default: '#fafafa',
+		},
+	},
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<CssBaseline>
-			<App />
-		</CssBaseline>
+		<ThemeProvider theme={themeLight}>
+			<CssBaseline>
+				<App />
+			</CssBaseline>
+		</ThemeProvider>
 	</React.StrictMode>
 );
 
